@@ -1,0 +1,11 @@
+{
+  "name": "address-bloc",
+  "version": "1.0.0",
+  "description": "app to model an address book in node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soo",
+  "license": "ISC"
+}
