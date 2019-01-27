@@ -3,40 +3,44 @@ const inquirer = require('inquirer');
  module.exports = class MenuController {
    constructor(){
      this.mainMenuQuestions = [
-      {
-        type: "list",
-        name: "mainMenuChoice",
-        message: "Please choose from an option below: ",
-        choices: [
-          "Add new contact",
-          "Exit"
-        ]
-      }
-    ];
-    this.contacts = [];
+       {
+         type: "list",
+         name: "mainMenuChoice",
+         message: "Please choose from an option below: ",
+         choices: [
+           "Add new contact",
+           "What time now",
+           "Exit"
+         ]
+       },
+     ];
+     this.contacts = [];
    }
 
    main(){
      console.log(`Welcome to AddressBloc!`);
-          inquirer.prompt(this.mainMenuQuestions).then((response) => {
-            switch(response.mainMenuChoice){
-              case "Add new contact":
-                this.addContact();
-                break;
-              case "Exit":
-                this.exit();
-              default:
-                console.log("Invalid input");
-                this.main();
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+     inquirer.prompt(this.mainMenuQuestions).then((response) => {
+       switch(response.mainMenuChoice){
+         case "Add new contact":
+           this.addContact();
+           break;
+         case "What time now":
+           this.getDate();
+           break;
+         case "Exit":
+           this.exit();
+         default:
+           console.log("Invalid input");
+           this.main();
+       }
+    })
+   .catch((err) => {
+       console.log(err);
+     });
    }
 
    clear(){
-     console.log("\x1Bc");
+    console.log("\x1Bc");
    }
 
    addContact(){
@@ -45,9 +49,14 @@ const inquirer = require('inquirer');
      this.main();
    }
 
+   getDate(){
+     this.clear();
+     console.log(`It's ${new Date()}`);
+     this.main();
+   }
+
    exit(){
      console.log("Thanks for using AddressBloc!");
      process.exit();
    }
-
  }
